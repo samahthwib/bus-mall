@@ -1,0 +1,24 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.all_products {
+  display: flex;
+}
+
+/* Create three equal columns that sits next to each other */
+.left_product {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+.center_product {
+    flex: 33.33%;
+    padding: 5px;
+}
+
+.right_product {
+    flex: 33.33%;
+    padding: 5px;
+}

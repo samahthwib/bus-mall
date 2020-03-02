@@ -35,8 +35,8 @@ var totalClicks = 0;
 
 //constructor function to generate dynamic product objects
 function Product(name){
-  this.name = name;
-  this.urlImage = `images/${this.name}`;
+  this.name = name.split('.')[0];
+  this.urlImage = `images/${name}`;
   this.clicksNumber = 0;
   this.viewsNumber = 0;
   products.push(this);//this its refer to the object that im created
@@ -110,7 +110,7 @@ function clickImage(e){
     centerImageRandom.viewsNumber++;
 
     pickRandomImages();
-  } if (totalClicks === 24){
+  } if (totalClicks === 25){
     groupProductImages.removeEventListener('click' , clickImage);
     render();
     //console.log('finished');
@@ -124,7 +124,7 @@ function render() {
   var ulE1 = document.getElementById('theEnd');
   for (var i =0; i<products.length ; i++) {
     var liE1 = document.createElement('li');
-    liE1.textContent = `${products[i].name} has ${products[i].clicksNumber} clicks and ${products[i].viewsNumber} views`;
+    liE1.textContent = `${products[i].name} had ${products[i].clicksNumber} votes and was shown ${products[i].viewsNumber} times`;
     ulE1.appendChild(liE1);
   }
 }

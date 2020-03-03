@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 var productImages = [
@@ -60,10 +61,7 @@ function pickRandomImages(){
 
 
   while(leftImageRandom===centerImageRandom || rightImageRandom === centerImageRandom || leftImageRandom === rightImageRandom){
-    //   while(((leftImageRandom||centerImageRandom)=== rightImageRandom) ||
-    //   (( centerImageRandom || rightImageRandom )===leftImageRandom) ||
-    //   (( leftImageRandom ||rightImageRandom )===centerImageRandom)){
-
+   
     leftImageRandom = products[randomNumber(0 , products.length-1 )];
     centerImageRandom = products[randomNumber(0 , products.length-1 )];
     rightImageRandom = products[randomNumber(0 , products.length-1 )];
@@ -76,6 +74,32 @@ function pickRandomImages(){
     rightProductImg.setAttribute('alt' ,rightImageRandom.name);
 
   }
+
+  a();
+
+}
+////////////////////////////////////////////////////////////////
+function a(){
+  var one = products[randomNumber(0 , products.length-1 )];
+  var two = products[randomNumber(0 , products.length-1 )];
+  var three = products[randomNumber(0 , products.length-1 )];
+
+  leftProductImg.setAttribute('src' , one.urlImage);
+  leftProductImg.setAttribute('alt' , one.name);
+  centerProductImg.setAttribute('src' , two.urlImage);
+  centerProductImg.setAttribute('src' , two.urlImage);
+  rightProductImg.setAttribute('src' , three.urlImage);
+  rightProductImg.setAttribute('alt' ,three.name);
+
+  //var arr =[leftImageRandom, centerImageRandom ,rightImageRandom];
+  while ((one===leftImageRandom || one===centerImageRandom || one===rightImageRandom)&&
+         (two===leftImageRandom || two===centerImageRandom || two===rightImageRandom) &&
+         (three===leftImageRandom || three===centerImageRandom || three===rightImageRandom)){
+
+          randomNumber();
+         }
+
+  
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -95,7 +119,7 @@ groupProductImages.addEventListener('click' , clickImage);
 
 function clickImage(e){
 
-  if(totalClicks < 25 ){
+  if(totalClicks < products.length ){
 
     if( e.target.id === 'left_product_img'){
       leftImageRandom.clicksNumber++;
@@ -108,11 +132,12 @@ function clickImage(e){
     leftImageRandom.viewsNumber++;
     rightImageRandom.viewsNumber++;
     centerImageRandom.viewsNumber++;
-
     pickRandomImages();
+
   } if (totalClicks === 25){
     groupProductImages.removeEventListener('click' , clickImage);
     render();
+    renderChart();
     //console.log('finished');
   }
 }
@@ -134,4 +159,58 @@ function render() {
 // //helper functions
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+///////////////////////////////////////////////////////////////////////
+
+
+// This function for the chart I declare 3 arr for names,views,clicks
+
+function renderChart(){
+  var myProductNames = [];
+  var myProductClicks = [];
+  var myviews = [];
+  for(var i = 0 ; i < products.length ; i++){
+    var productNames = products[i].name;
+    myProductNames.push(productNames);
+    var productClicks = products[i].clicksNumber;
+    myProductClicks.push(productClicks);
+    var productViews = products[i].viewsNumber;
+    myviews.push(productViews);
+  }
+  var ctx = document.getElementById('myProducts').getContext('2d');
+  // eslint-disable-next-line no-unused-vars
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: myProductNames,
+      datasets: [{
+        label: '# of Votes',
+        data: myProductClicks,
+        backgroundColor: 'rgba(238, 228, 82, 0.9)',
+        borderColor: 'rgba(245, 231, 29, 0.84)',
+        borderWidth: 1,
+
+      },
+      {
+
+        label: '# of views',
+        data: myviews,
+        backgroundColor: 'rgba(88, 83, 13, 0.35)',
+        borderColor: 'rgba(46, 44, 14, 0.84)',
+        borderWidth: 1,
+
+
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 }

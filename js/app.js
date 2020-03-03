@@ -92,7 +92,7 @@ function a(){
   rightProductImg.setAttribute('alt' ,three.name);
 
   //var arr =[leftImageRandom, centerImageRandom ,rightImageRandom];
-  while ((one===leftImageRandom || one===centerImageRandom || one===rightImageRandom)&&
+  while ((one === leftImageRandom || one===centerImageRandom || one===rightImageRandom)&&
          (two===leftImageRandom || two===centerImageRandom || two===rightImageRandom) &&
          (three===leftImageRandom || three===centerImageRandom || three===rightImageRandom)){
 

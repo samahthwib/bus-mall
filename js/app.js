@@ -207,11 +207,12 @@ function renderChart() {
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: myProductNames,
+      labels:  
+              myProductNames,
       datasets: [{
         label: '# of Votes',
         data: myProductClicks,
-        backgroundColor: 'rgba(238, 228, 82, 0.9)',
+        backgroundColor: 'rgba(245, 119, 247, 0.7)',
         borderColor: 'rgba(245, 231, 29, 0.84)',
         borderWidth: 1,
 
@@ -220,7 +221,7 @@ function renderChart() {
 
         label: '# of views',
         data: myviews,
-        backgroundColor: 'rgba(88, 83, 13, 0.35)',
+        backgroundColor: 'rgba(252, 195, 253, 0.37)',
         borderColor: 'rgba(46, 44, 14, 0.84)',
         borderWidth: 1,
 

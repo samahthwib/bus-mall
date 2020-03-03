@@ -50,7 +50,10 @@ function pickRandomImages(){
   leftImageRandom = products[randomNumber(0 , products.length-1 )];
   centerImageRandom = products[randomNumber(0 , products.length-1 )];
   rightImageRandom = products[randomNumber(0 , products.length-1 )];
-
+   
+  leftImageRandom.viewsNumber=1;
+  rightImageRandom.viewsNumber=1;
+  centerImageRandom.viewsNumber=1;
 
   leftProductImg.setAttribute('src' , leftImageRandom.urlImage);
   leftProductImg.setAttribute('alt' , leftImageRandom.name);
@@ -61,7 +64,7 @@ function pickRandomImages(){
 
 
   while(leftImageRandom===centerImageRandom || rightImageRandom === centerImageRandom || leftImageRandom === rightImageRandom){
-   
+
     leftImageRandom = products[randomNumber(0 , products.length-1 )];
     centerImageRandom = products[randomNumber(0 , products.length-1 )];
     rightImageRandom = products[randomNumber(0 , products.length-1 )];
@@ -75,7 +78,7 @@ function pickRandomImages(){
 
   }
 
-  a();
+  // a();
 
 }
 ////////////////////////////////////////////////////////////////
@@ -96,10 +99,10 @@ function a(){
          (two===leftImageRandom || two===centerImageRandom || two===rightImageRandom) &&
          (three===leftImageRandom || three===centerImageRandom || three===rightImageRandom)){
 
-          randomNumber();
-         }
+    randomNumber();
+  }
 
-  
+
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -119,7 +122,7 @@ groupProductImages.addEventListener('click' , clickImage);
 
 function clickImage(e){
 
-  if(totalClicks < products.length ){
+  if(totalClicks < 25 ){
 
     if( e.target.id === 'left_product_img'){
       leftImageRandom.clicksNumber++;
